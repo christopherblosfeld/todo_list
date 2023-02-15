@@ -36,7 +36,12 @@ class TodoListItem extends StatelessWidget {
                   )),
               IconButton(
                   onPressed: () {
-                    onDelete(todo);
+                    try {
+                      onDelete(todo);
+                    } catch (e) {
+                      print(e);
+                      print('Deu ruim no ON Delete');
+                    }
                   },
                   icon: const Icon(Icons.delete)),
             ],
