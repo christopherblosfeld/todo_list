@@ -227,7 +227,7 @@ class _TodoListPageState extends State<TodoListPage> {
           .remove(todo); //Remover um item da Lista ao clicar no botao delete.
     });
 
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    /*ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(
         'Você removeu a tarefa ${todo.title}',
         style: TextStyle(
@@ -243,6 +243,6 @@ class _TodoListPageState extends State<TodoListPage> {
           //
         },
       ),
-    ));
+    ));*/
   }
 }
