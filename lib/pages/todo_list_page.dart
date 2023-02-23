@@ -226,23 +226,5 @@ class _TodoListPageState extends State<TodoListPage> {
       todoList
           .remove(todo); //Remover um item da Lista ao clicar no botao delete.
     });
-
-    /*ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        'Você removeu a tarefa ${todo.title}',
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      backgroundColor: Colors.blue,
-      action: SnackBarAction(
-        label: 'Desfazer',
-        textColor: Colors.red,
-        onPressed: () {
-          print('teste');
-          //
-        },
-      ),
-    ));*/
   }
 }
