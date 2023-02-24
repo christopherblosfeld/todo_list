@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/repositories/todo_repositories.dart';
 import '../models/todo.dart';
 import '../widgets/todo_list_item.dart';
 import 'login.dart';
@@ -15,10 +16,24 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController todoController = TextEditingController();
-  //Controlador do Texto que será inserido nas tarefas
+  final TodoRepository todoRepository = TodoRepository();
+
   List<Todo> todoList = [];
+
   Todo? deletedTodo;
   int? deletedTodoPos;
+
+  @override
+  void initState() {
+    super
+        .initState(); //Ao recarregar a tela de TodolistPage, iniciamos o estado do app com a lista que estava salva no todoRepository.
+
+    todoRepository.getTodoList().then((value) {
+      setState(() {
+        todoList = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +178,7 @@ class _TodoListPageState extends State<TodoListPage> {
                             });
                             todoController
                                 .clear(); //Limpar o campo de Texto após inserir um novo registro
+                            todoRepository.saveTodoList(todoList);
                           },
                           child: Text('+', style: TextStyle(fontSize: 30)),
                         )
@@ -195,6 +211,7 @@ class _TodoListPageState extends State<TodoListPage> {
                           onPressed: () {
                             setState(() {
                               todoList.clear();
+                              todoRepository.saveTodoList(todoList);
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -226,5 +243,6 @@ class _TodoListPageState extends State<TodoListPage> {
       todoList
           .remove(todo); //Remover um item da Lista ao clicar no botao delete.
     });
+    todoRepository.saveTodoList(todoList);
   }
 }

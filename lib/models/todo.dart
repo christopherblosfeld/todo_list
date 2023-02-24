@@ -1,6 +1,11 @@
 class Todo {
   Todo({required this.title, required this.dateTime});
 
+  Todo.fromJson(Map<String, dynamic> json)
+      : title = json['title'],
+        dateTime = DateTime.parse(json[
+            'datetime']); //Convertendo a String DateTime para um objeto do tipo date time
+
   String title;
   DateTime dateTime;
 
